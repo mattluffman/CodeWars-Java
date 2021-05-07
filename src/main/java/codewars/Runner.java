@@ -12,7 +12,8 @@ import static codewars.Kata.whoLikesIt;
 public class Runner {
 
     public static void main(String[] args) {
-        showLikesOutput();
+        // showLikesOutput();
+        braceCheckerTest();
     }
 
     public static void showLikesOutput() {
@@ -22,5 +23,24 @@ public class Runner {
         System.out.println(whoLikesIt("Max", "John", "Mark"));
         System.out.println(whoLikesIt("Alex", "Jacob", "Mark", "Max"));
         System.out.println(whoLikesIt("Alex", "Jacob", "Mark", "Max", "Matt", "Matt", "Austin", "Ryan"));
+    }
+
+
+    /**
+     * "(){}[]"   =>  True
+     * "([{}])"   =>  True
+     * "(}"       =>  False
+     * "[(])"     =>  False
+     * "[({})](]" =>  False
+     */
+    public static void braceCheckerTest() {
+        Kata testRun = new Kata();
+        System.out.println(testRun.braceChecker_isValid("(){}[]"));
+        System.out.println(testRun.braceChecker_isValid("([{}])"));
+        System.out.println(testRun.braceChecker_isValid("(}"));
+        System.out.println(testRun.braceChecker_isValid("[(])"));
+        System.out.println(testRun.braceChecker_isValid("[({})](]"));
+        // custom
+        System.out.println(testRun.braceChecker_isValid("{{}([{()[]}])}"));
     }
 }

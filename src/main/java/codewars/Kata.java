@@ -1,5 +1,9 @@
 package codewars;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.function.Predicate;
+
 /**
  * codewars java kata
  *
@@ -46,4 +50,70 @@ public class Kata {
         }
         return output;
     }
+
+    /**
+     * started: 4/6/21
+     * Kata: https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/java
+     * solutions: https://www.codewars.com/kata/5277c8a221e209d3f6000b56/solutions/java
+     * topics: Deque, Stack, lambda
+     *
+     * sources:
+     * https://mkyong.com/java8/java-8-predicate-examples/
+     * https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html
+     *
+     * @param braces sequence of braces
+     * @return true if valid, false otherwise
+     */
+    public boolean braceChecker_isValid(String braces) {
+        boolean valid = false;
+        // an odd string could never be valid, skip processing
+        if (braces.length() % 2 == 0) {
+            Predicate<String> isOpening = x -> "([{".contains(x);
+            Predicate<String> isClosing = ")]}"::contains; // method reference
+            Deque<String> stack = new ArrayDeque<>();
+            final String[] split = braces.split("");
+            boolean badSequence = false; // could throw IllegalArgumentException rather using a flag
+            for (String brace : split) {
+                if (isOpening.test(brace)) {
+                    stack.addFirst(brace);
+                } else if (isClosing.test(brace)) {
+                    // check top item, if it doesn't correspond to current string, then we have an invalid string
+                    if (getOpeningBraceEquivalent(brace).equals(stack.peekFirst())) {
+                        // closing brace matches opening brace at the top of the stack, pop it off & continue
+                        stack.removeFirst();
+                    } else {
+                        badSequence = true;
+                        break;
+                    }
+                } else {
+                    badSequence = true;
+                    break;
+                }
+            }
+            if (stack.size() == 0 && !badSequence) {
+                valid = true;
+            }
+        }
+        return valid;
+    }
+
+    /**
+     * helper for {@link #braceChecker_isValid(String)}
+     *
+     * @param brace { ( or [
+     * @return brace equivalent
+     */
+    private static String getOpeningBraceEquivalent(String brace) {
+        switch (brace) {
+            case ")":
+                return "(";
+            case "]":
+                return "[";
+            case "}":
+                return "{";
+            default:
+                throw new IllegalArgumentException("argument must be a closing 'brace': ), ], or }");
+        }
+    }
+
 }

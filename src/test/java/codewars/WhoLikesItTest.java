@@ -7,7 +7,8 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * unit tests for wholikesit kata
- * https://www.codewars.com/kata/5266876b8f4bf2da9b000362/train/java
+ * https://www.codewars.com/kata/5266876b8f4bf2da9b000362/train/java<br/>
+ * for {@link Kata#whoLikesIt(String...)}
  *
  * @author Matt Luffman
  * Date: 5/6/2021
