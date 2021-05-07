@@ -1,7 +1,9 @@
 package codewars;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
@@ -116,4 +118,29 @@ public class Kata {
         }
     }
 
+    // TODO: try this with java 8 syntax
+
+    /**
+     * started: 4/14/21
+     * kata: https://www.codewars.com/kata/5264d2b162488dc400000001/train/java
+     * solutions: https://www.codewars.com/kata/5264d2b162488dc400000001/solutions/java
+     * topics: string reversal, split, join
+     *
+     * sources:
+     * https://www.geeksforgeeks.org/reverse-a-string-in-java/
+     *
+     * @param sentence string with a few or more words
+     * @return sentence with all 5+ character words reversed
+     */
+    public String spinWords(String sentence) {
+        List<String> processedWords = new ArrayList<>();
+        for (String word : sentence.split(" ")) {
+            if (word.length() >= 5) {
+                // word = StringUtils.reverse(word);
+                word = new StringBuffer(word).reverse().toString();
+            }
+            processedWords.add(word);
+        }
+        return String.join(" ", processedWords);
+    }
 }

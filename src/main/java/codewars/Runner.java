@@ -13,7 +13,13 @@ public class Runner {
 
     public static void main(String[] args) {
         // showLikesOutput();
-        braceCheckerTest();
+        // braceCheckerTest();
+        spinWordsTest();
+    }
+
+    public static void test(boolean condition) {
+        System.out.println(condition);
+        assert condition;
     }
 
     public static void showLikesOutput() {
@@ -42,5 +48,13 @@ public class Runner {
         System.out.println(testRun.braceChecker_isValid("[({})](]"));
         // custom
         System.out.println(testRun.braceChecker_isValid("{{}([{()[]}])}"));
+    }
+
+    public static void spinWordsTest() {
+        Kata testRun = new Kata();
+        test(testRun.spinWords("emocleW").equals("Welcome"));
+        test(testRun.spinWords("Hey wollef sroirraw").equals("Hey fellow warriors"));
+        test(testRun.spinWords("This is a test").equals("This is a test"));
+        test(testRun.spinWords("This is another test").equals("This is rehtona test"));
     }
 }
