@@ -11,6 +11,8 @@ import static codewars.Kata.whoLikesIt;
  */
 public class Runner {
 
+    private static final Kata testRun = new Kata();
+
     public static void main(String[] args) {
         // showLikesOutput();
         // braceCheckerTest();
@@ -40,7 +42,6 @@ public class Runner {
      * "[({})](]" =>  False
      */
     public static void braceCheckerTest() {
-        Kata testRun = new Kata();
         System.out.println(testRun.braceChecker_isValid("(){}[]"));
         System.out.println(testRun.braceChecker_isValid("([{}])"));
         System.out.println(testRun.braceChecker_isValid("(}"));
@@ -51,7 +52,6 @@ public class Runner {
     }
 
     public static void spinWordsTest() {
-        Kata testRun = new Kata();
         test(testRun.spinWords("emocleW").equals("Welcome"));
         test(testRun.spinWords("Hey wollef sroirraw").equals("Hey fellow warriors"));
         test(testRun.spinWords("This is a test").equals("This is a test"));

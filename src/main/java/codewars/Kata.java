@@ -119,7 +119,6 @@ public class Kata {
     }
 
     // TODO: try this with java 8 syntax
-
     /**
      * started: 4/14/21
      * kata: https://www.codewars.com/kata/5264d2b162488dc400000001/train/java
@@ -142,5 +141,46 @@ public class Kata {
             processedWords.add(word);
         }
         return String.join(" ", processedWords);
+    }
+
+
+    /**
+     * started: 4/15/21
+     * finished: 5/10/21
+     * kata: https://www.codewars.com/kata/5544c7a5cb454edb3c000047/train/java
+     * solutions: https://www.codewars.com/kata/5544c7a5cb454edb3c000047/solutions/java
+     * topics:
+     *
+     * TODO: look at recursive solution: https://www.codewars.com/kata/reviews/5545d4610240a71165000094/groups/55dd6ab275269ffdba000041
+     *
+     * @param h      height ball is dropped from
+     * @param bounce bounce ratio
+     * @param window window height
+     * @return number of window passes
+     */
+    public static int bouncingBall(double h, double bounce, double window) {
+        int passes;
+        try {
+            if (h <= 0) {
+                throw new IllegalArgumentException("h must be greater than 0");
+            }
+            if (bounce >= 1 || bounce <= 0) {
+                throw new IllegalArgumentException("bounce must be greater than 0 & less than 1");
+            }
+            if (window >= h) {
+                throw new IllegalArgumentException("widnow must be less than h");
+            }
+
+            passes = 1;
+            double newHeight = h * bounce;
+            while (newHeight > window) {
+                passes += 2;
+                newHeight *= bounce;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            passes = -1;
+        }
+        return passes;
     }
 }
